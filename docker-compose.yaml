@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+  php:
+    container_name: otus-php
+    build:
+      context: .
+      dockerfile: .docker/php/Dockerfile
+    volumes:
+      - .:/var/www/html
+    networks:
+      - otus-local
+
+  nginx:
+    container_name: otus-nginx
+    build:
+      context: .
+      dockerfile: .docker/nginx/Dockerfile
+    depends_on:
+      - php
+    ports:
+      - "80:80"
+    volumes:
+      - ".:/var/www/html"
+      - "./.docker/nginx/default.conf:/etc/nginx/conf.d/default.conf"
+    networks:
+      - otus-local
+
+  mysql:
+    container_name: otus-mysql
+    build:
+      context: .
+      dockerfile: .docker/mysql/Dockerfile
+    ports:
+      - "3306:3306"
+    volumes:
+      - "otus-mysql-data:/var/lib/mysql"
+      - "otus-mysql-logs:/var/logs/mysql"
+    environment:
+      MYSQL_DATABASE: 'otus'
+      MYSQL_USER: 'otus'
+      MYSQL_PASSWORD: 'otus'
+      MYSQL_ROOT_PASSWORD: 'otus'
+      MYSQL_ROOT_HOST: "%"
+    networks:
+      - otus-local
+
+volumes:
+  otus-mysql-data:
+  otus-mysql-logs:
+
+networks:
+  otus-local:
+    external: true
