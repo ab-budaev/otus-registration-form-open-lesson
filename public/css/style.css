@@ -1,0 +1,232 @@
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    /* Браузер сначала попробует найти шрифт локально */
+    src: local("Inter"),
+        /* Если не получилось, загрузит woff2 */ url("/fonts/Inter-Regular.woff2") format("woff2"),
+        /* Если браузер не поддерживает woff2, загрузит woff */ url("/fonts/Inter-Regular.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 700;
+    /* Браузер сначала попробует найти шрифт локально */
+    src: local("Inter"),
+        /* Если не получилось, загрузит woff2 */ url("/fonts/Inter-Bold.woff2") format("woff2"),
+        /* Если браузер не поддерживает woff2, загрузит woff */ url("/fonts/Inter-Bold.woff") format("woff");
+}
+
+body {
+    margin: 0;
+}
+
+h1, h2, h3, p {
+    margin: 0;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    color: #fff;
+}
+
+.reg {
+    display: flex;
+    height: 1024px; /* в явном виде указываем высоту */
+}
+
+.reg-left {
+    background-image: url(../img/bg.jpg);
+    background-repeat: no-repeat;
+    width: 666px;
+    position: relative;
+    padding: 64px 111px 0 88px;
+    box-sizing: border-box;
+}
+
+.reg-left__description {
+    position: absolute;
+    top: 50%;
+    margin-top: -55px;
+    width: 473px;
+}
+
+.reg-left__subtitle {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 38px; /* межстрочный интервал */
+}
+
+h4 {
+    font-weight: 500;
+    font-size: 18px;
+}
+
+/* блок с полями для ввода */
+.reg-right {
+    padding: 193px 111px 204px 127px;
+    box-sizing: border-box;
+    max-width: 774px;
+}
+
+.reg-right__title {
+    font-weight: bold;
+    font-size: 30px;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.reg-right__subtitle {
+    font-weight: normal;
+    font-size: 18px;
+    color: #8692A6;
+    margin-bottom: 40px;
+}
+
+.reg-right__wrapper {
+    display: inline-flex;
+    flex-direction: column;
+    width: 426px;
+    margin-bottom: 24px;
+}
+
+label {
+    font-weight: 500;
+    font-size: 16px;
+    color: #8692A6;
+    margin-bottom: 14px;
+}
+
+.input {
+    border: 1px solid #8692A6;
+    box-sizing: border-box;
+    border-radius: 6px;
+    padding: 24px 30px;
+    height: 64px;
+    color: black;
+    width: 100%;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input::placeholder {
+    color: #8692A6;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+input:hover, input:focus {
+    border: 1px solid #1565D8;
+    box-shadow: 0px 4px 10px 3px rgba(0, 0, 0, 0.11);
+    transition: all 0.3s ease;
+}
+
+.checkbox-symbol {
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
+.checkbox-container {
+    box-sizing: border-box;
+    background: #ffffff;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    flex-flow: row wrap;
+}
+
+.checkbox-container * {
+    box-sizing: border-box;
+}
+
+.checkbox-input {
+    position: absolute;
+    visibility: hidden;
+}
+
+.checkbox {
+    user-select: none;
+    cursor: pointer;
+    padding: 6px 0;
+    border-radius: 6px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+}
+
+.checkbox:not(:last-child) {
+    margin-right: 6px;
+}
+
+.checkbox span {
+    vertical-align: middle;
+    transform: translate3d(0, 0, 0);
+}
+
+.checkbox span:first-child {
+    position: relative;
+    flex: 0 0 18px;
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    transform: scale(1);
+    border: 1px solid #8692A6;
+    transition: all 0.3s ease;
+}
+
+.checkbox span:first-child svg {
+    position: absolute;
+    top: 3px;
+    left: 2px;
+    fill: none;
+    stroke: #fff;
+    stroke-dasharray: 16px;
+    stroke-dashoffset: 16px;
+    transition: all 0.3s ease;
+    transform: translate3d(0, 0, 0);
+}
+
+.checkbox span:last-child {
+    padding-left: 8px;
+    line-height: 18px;
+    color: #8692A6;
+}
+
+.checkbox:hover span:first-child {
+    border-color: #0077ff;
+}
+
+.checkbox-input:checked + .checkbox span:first-child {
+    background: #0077ff;
+    border-color: #0077ff;
+    animation: zoom-in-out 0.3s ease;
+}
+
+.checkbox-input:checked + .checkbox span:first-child svg {
+    stroke-dashoffset: 0;
+}
+
+button {
+    font-weight: 500;
+    font-size: 16px;
+    padding: 23px 147px;
+    color: white;
+    background: #1565D8;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    width: 426px;
+}
+
+button:hover, button:focus {
+    box-shadow: 0px 4px 10px 3px rgba(0, 0, 0, 0.11);
+    transition: all 0.3s ease;
+}
+
+.error {
+    color: red;
+}
