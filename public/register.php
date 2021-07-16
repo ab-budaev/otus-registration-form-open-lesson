@@ -3,12 +3,12 @@
 session_start();
 session_unset();
 
-$fullName = $_POST['fullName'];
+$fullName = $_POST['fullname'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 
 $inputValues = [
-    'fullName' => $fullName,
+    'fullname' => $fullName,
     'email'    => $email,
     'password' => $password,
 ];
@@ -51,14 +51,13 @@ function validateInputValues(array $values): void
         if (!isLongerThan($value, 6)) {
             $errors[$key][] = 'Field value should be longer than 6 symbols';
         }
-    }
+        if ($key === 'email' && !isEmail($value)) {
+            $errors[$key][] = 'Field value should be correct email address';
+        }
 
-    if (!isEmail($values['email'])) {
-        $errors['email'][] = 'Field value should be correct email address';
-    }
-
-    if (!isSafePassword($values['password'])) {
-        $errors['password'][] = 'Password should contain numbers';
+        if ($key === 'password' && !isSafePassword($value)) {
+            $errors[$key][] = 'Password should contain numbers';
+        }
     }
 
     if (!empty($errors)) {
